@@ -43,7 +43,6 @@ class Hangman extends Component {
     }));
   }
 
-
   /** generateButtons: return array of letter buttons to render */
   generateButtons() {
     return "abcdefghijklmnopqrstuvwxyz".split("").map((ltr, index) => (
@@ -67,7 +66,6 @@ class Hangman extends Component {
       guessed: new Set()
     }));
   }
-
 
   /** render: render game */
   render() {
