@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { randomWord } from './words';
 import "./Hangman.css";
 import img0 from "./0.jpg";
 import img1 from "./1.jpg";
@@ -17,7 +18,7 @@ class Hangman extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: "apple" };
+    this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
     this.handleGuess = this.handleGuess.bind(this);
   }
 
@@ -40,7 +41,7 @@ class Hangman extends Component {
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
-    console.log(this.state.nWrong + 1);
+    console.log(randomWord);
   }
 
   /** generateButtons: return array of letter buttons to render */
