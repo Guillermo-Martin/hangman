@@ -62,7 +62,7 @@ class Hangman extends Component {
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        <img src={this.props.images[this.state.nWrong]} />
+        <img src={this.props.images[this.state.nWrong]} alt={this.state.nWrong + " wrong guesses"} />
         <p>Number Wrong: {this.state.nWrong}</p>
 
         {/* Used conditional rendering for displaying the word and buttons */}
