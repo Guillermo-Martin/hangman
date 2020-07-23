@@ -41,8 +41,8 @@ class Hangman extends Component {
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
-    console.log(randomWord);
   }
+
 
   /** generateButtons: return array of letter buttons to render */
   generateButtons() {
@@ -57,6 +57,17 @@ class Hangman extends Component {
       </button>
     ));
   }
+
+  // handleReset function
+  handleReset = () => {
+    // reset the word, count, and buttons
+    this.setState(st => ({
+      answer: randomWord(),
+      nWrong: 0,
+      guessed: new Set()
+    }));
+  }
+
 
   /** render: render game */
   render() {
@@ -79,6 +90,8 @@ class Hangman extends Component {
           ? <p>You lose!</p> 
           : <p className='Hangman-btns'>{this.generateButtons()}</p>
         )}
+
+        <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
