@@ -40,6 +40,7 @@ class Hangman extends Component {
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
+    console.log(this.state.nWrong + 1);
   }
 
   /** generateButtons: return array of letter buttons to render */
@@ -63,8 +64,20 @@ class Hangman extends Component {
         <h1>Hangman</h1>
         <img src={this.props.images[this.state.nWrong]} />
         <p>Number Wrong: {this.state.nWrong}</p>
-        <p className='Hangman-word'>{this.guessedWord()}</p>
-        <p className='Hangman-btns'>{this.generateButtons()}</p>
+
+        {/* Used conditional rendering for displaying the word and buttons */}
+        
+        {/* when it's game over:  display the word */}
+        {(this.state.nWrong === 6 
+          ? <h1>{this.state.answer}</h1> 
+          : <p className='Hangman-word'>{this.guessedWord()}</p> 
+        )}
+        
+        {/* when it's game over:  display "You lose" and get rid of the buttons */}
+        {(this.state.nWrong === 6 
+          ? <p>You lose!</p> 
+          : <p className='Hangman-btns'>{this.generateButtons()}</p>
+        )}
       </div>
     );
   }
