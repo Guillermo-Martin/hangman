@@ -76,19 +76,31 @@ class Hangman extends Component {
         <p>Number Wrong: {this.state.nWrong}</p>
 
         {/* Used conditional rendering for displaying the word and buttons */}
-
-        {/* when it's game over:  display the word */}
-        {(this.state.nWrong === this.props.maxWrong 
-          ? <h1>{this.state.answer}</h1> 
-          : <p className='Hangman-word'>{this.guessedWord()}</p> 
-        )}
+        {(this.guessedWord().join("") === this.state.answer
+          // if the guessed word equals the answer, display a div with you win and the answer
+          ? 
+            <div>
+              <p>You win!</p> 
+              <h1>{this.state.answer}</h1>
+            </div>
+          // otherwise display the blank word and the buttons
+          : (
+              // if the nWrong equals the max wrong, then display the answer; otherwise display
+              // a div with the word to guess and the letter buttons
+              this.state.nWrong === this.props.maxWrong 
+              ? 
+                <div>
+                  <p>You lose!</p>
+                  <h1>{this.state.answer}</h1> 
+                </div> 
+              : 
+                <div>
+                  <p className='Hangman-word'>{this.guessedWord()}</p> 
+                  <p className='Hangman-btns'>{this.generateButtons()}</p>
+                </div>
+            )
+        )}  
         
-        {/* when it's game over:  display "You lose" and get rid of the buttons */}
-        {(this.state.nWrong === this.props.maxWrong 
-          ? <p>You lose!</p> 
-          : <p className='Hangman-btns'>{this.generateButtons()}</p>
-        )}
-
         <button onClick={this.handleReset}>Reset</button>
       </div>
     );
